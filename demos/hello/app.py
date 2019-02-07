@@ -6,7 +6,7 @@
     :license: MIT, see LICENSE for more details.
 """
 import click
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -21,7 +21,8 @@ def index():
 @app.route('/hi')
 @app.route('/hello')
 def say_hello():
-    return '<h1>Hello, Flask!</h1>'
+    name = request.args.get('name', 'Flask')
+    return '<h1>Hello, %s!</h1>' % name
 
 
 # dynamic route, URL variable default
